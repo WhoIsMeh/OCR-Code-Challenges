@@ -16,14 +16,20 @@ const string WORDS_TENS[8] = {
 namespace numName
 {
 
-	string numberName(int num)
+	string intName(int num)
 	{
-
+		
+		string result = "";
+		if (num < 0)
+		{
+			result = "negative "
+			num = -num
+		}
+		
 		int thou = floor(num / 1000);
 		int hund = floor(num / 100 % 10);
 		int flat = num % 100;
 
-		string result = "";
 		if (thou > 0)
 		{
 			result = numberName(thou) + " thousand" + (num - thou * 1000 > 0 ? " " : "");

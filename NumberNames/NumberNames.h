@@ -24,6 +24,10 @@ namespace numName
 		{
 			result = "negative ";
 			num = -num;
+		} 
+		else if (num == 0)
+		{
+			return "zero";
 		}
 		
 		int thou = floor(num / 1000);
@@ -62,10 +66,14 @@ namespace numName
 	string floatName(float num)
 	{
 		string result = "";
+		if (num < 0)
+		{
+			result = "negative ";
+			num = -num;
+		};
 		float whole, fractional;
 		fractional = modf(num, &whole);
-		result = intName(static_cast<int>(whole));
-		fractional = fabs(fractional);
+		result = result + intName(static_cast<int>(whole));
 		
 		if (fractional < 0)
 		{

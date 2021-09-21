@@ -22,8 +22,8 @@ namespace numName
 		string result = "";
 		if (num < 0)
 		{
-			result = "negative "
-			num = -num
+			result = "negative ";
+			num = -num;
 		}
 		
 		int thou = floor(num / 1000);
@@ -32,7 +32,7 @@ namespace numName
 
 		if (thou > 0)
 		{
-			result = numberName(thou) + " thousand" + (num - thou * 1000 > 0 ? " " : "");
+			result = intName(thou) + " thousand" + (num - thou * 1000 > 0 ? " " : "");
 		}
 		if (hund > 0)
 		{
@@ -58,6 +58,27 @@ namespace numName
 		}
 		return result;
 
+	};
+	string floatName(float num)
+	{
+		string result = "";
+		float whole, fractional;
+		fractional = modf(num, &whole);
+		result = intName(static_cast<int>(whole));
+
+		if (fractional < 0)
+		{
+			return result;
+		}
+		result = result + " point "	;
+		fractional *= 10;
+		do 
+		{
+			result = result + WORDS_DIGITS[static_cast<int>(fractional)];
+			fractional = fmod(fractional * 10, 10);
+		} while (fractional > 0);
+		
+		return result;
 	};
 
 }

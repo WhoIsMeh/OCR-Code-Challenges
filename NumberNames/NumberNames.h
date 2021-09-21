@@ -65,16 +65,17 @@ namespace numName
 		float whole, fractional;
 		fractional = modf(num, &whole);
 		result = intName(static_cast<int>(whole));
-
+		fractional = fabs(fractional);
+		
 		if (fractional < 0)
 		{
 			return result;
 		}
-		result = result + " point "	;
+		result = result + " point";
 		fractional *= 10;
 		do 
 		{
-			result = result + WORDS_DIGITS[static_cast<int>(fractional)];
+			result = result + " " + WORDS_DIGITS[static_cast<int>(fractional)];
 			fractional = fmod(fractional * 10, 10);
 		} while (fractional > 0);
 		

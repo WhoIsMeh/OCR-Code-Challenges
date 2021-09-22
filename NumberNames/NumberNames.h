@@ -3,23 +3,22 @@
 
 #include <iostream>
 #include <math.h>
-using namespace std;
 
-const string WORDS_DIGITS[20] = {
+const std::string WORDS_DIGITS[20] = {
 	"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
 	"eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
 };
-const string WORDS_TENS[8] = {
+const std::string WORDS_TENS[8] = {
 	"twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"
 };
 
 namespace numName
 {
 
-	string intName(int num)
+	std::string intName(int num)
 	{
 		
-		string result = "";
+		std::string result = "";
 		if (num < 0)
 		{
 			result = "negative ";
@@ -63,9 +62,9 @@ namespace numName
 		return result;
 
 	};
-	string floatName(float num)
+	std::string floatName(float num)
 	{
-		string result = "";
+		std::string result = "";
 		if (num < 0)
 		{
 			result = "negative ";

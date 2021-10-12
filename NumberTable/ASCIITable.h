@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <math.h>
 
 namespace tablegen
 {
@@ -13,23 +14,29 @@ namespace tablegen
 		int spacing = 1
 	) {
 		std::string result;
-		std::string space = std::string(spacing, ' ');
-		std::vector<unsigned int> columnWidth;
-		for (int i; i < vector[1].size(); i++)
+		std::vector<int> columnWidth;
+		for (int i; i < vector[0].size(); i++)
 			{
+				columnWidth.push_back(0);
 				for (std::vector v: vector)
 					{
-						columnWidth[i] = std::max(
-							(unsigned int) v[i].size() + spacing * 2,
+						columnWidth[i] = (std::max(
+							(int) v[i].size(),
 							columnWidth[i]
-							);
+							));
 					}
 			}
 		for (std::vector<std::string> row: vector)
 			{
-				for(std::string cell: row)
+				for(int i; i < row.size(); i++)
 					{
-						result += space + cell.append(space);
+						std::cout << columnWidth[i] << ": ";
+						float space = (columnWidth[i] + spacing * 2) - vector[i].size();
+						std::cout << space << std::endl;
+						result += (std::string(' ', (int) floor(space / 2)) 
+							+ row[i] 
+							+ std::string(' ', (int) ceil(space / 2))
+							+ "|");
 					}
 			}
 		return result;

@@ -28,7 +28,7 @@ namespace tablegen
 					}
 				hrline += (std::string(columnWidth[i] + (spacing * 2), '-') 
 					+ ((i != vector[0].size() - 1) ? "+": ""));
-
+	
 			}
 		hrline += "+";
 		result += "\n" + hrline + "\n";
@@ -63,8 +63,8 @@ int main()
 {
 	std::vector<std::vector<std::string>> v = {
 	{"a", "b", "c", "d"},
-	{"aaaa", "bbbbbb", "cc", "d"},
-	{"aa", "bbb", "ccccc", "dddd"}
+	{"aa", "bb", "cc", "dd"},
+	{"aaa", "bbb", "ccc", "ddd"}
 	};
 	std::cout << tablegen::ASCIITable(v, 1);
 	return 0;

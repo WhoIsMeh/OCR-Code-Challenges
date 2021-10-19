@@ -15,6 +15,7 @@ namespace tablegen
 	) {
 		std::string result;
 		std::vector<int> columnWidth;
+		std::string hrline = "+";
 		for (int i; i < vector[0].size(); i++)
 			{
 				columnWidth.push_back(0);
@@ -25,19 +26,33 @@ namespace tablegen
 							columnWidth[i]
 							));
 					}
+				hrline += (std::string(columnWidth[i] + (spacing * 2), '-') 
+					+ ((i != vector[0].size() - 1) ? "+": ""));
+
 			}
+		hrline += "+";
+		result += "\n" + hrline + "\n";
 		for (std::vector<std::string> row: vector)
 			{
 				for(int i; i < row.size(); i++)
 					{
 						std::cout << columnWidth[i] << ": ";
-						float space = (columnWidth[i] + spacing * 2) - vector[i].size();
+						float space = (columnWidth[i] + spacing * 2) - row[i].size();
 						std::cout << space << std::endl;
-						result += (std::string(' ', (int) floor(space / 2)) 
-							+ row[i] 
-							+ std::string(' ', (int) ceil(space / 2))
-							+ "|");
+						if (i != row.size() - 1)
+							{
+								result += (std::string((int) floor(space / 2), ' ') 
+									+ row[i]
+									+ std::string((int) ceil(space / 2), ' ')
+									+ "|");
+							}
+						else
+							{
+								result += (std::string((int) floor(space / 2), ' ') 
+									+ row[i]);
+							}
 					}
+				result += "\n" + hrline + "\n";
 			}
 		return result;
 	}
@@ -47,9 +62,9 @@ namespace tablegen
 int main()
 {
 	std::vector<std::vector<std::string>> v = {
-	{"hi", "bye", "your", "mom"},
-	{"dumb", "words", "to", "test"},
-	{"ew", "you", "are", "c++17?"}
+	{"a", "b", "c", "d"},
+	{"aaaa", "bbbbbb", "cc", "d"},
+	{"aa", "bbb", "ccccc", "dddd"}
 	};
 	std::cout << tablegen::ASCIITable(v, 1);
 	return 0;
